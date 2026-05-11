@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokAPI</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<h1>POKEDEX</h1>
+<div class="pokedex">
+    <h2 id="nombre">
+    Cargando...
+    </h2>
+    <img id="imagen">
+    <p>
+    Número:
+    <span id="numero"></span>
+    </p>
+    <input type="text"
+    id="buscar"
+    placeholder="Nombre o número">
+    <br>
+    <button id="btnBuscar">
+    Buscar
+    </button>
+    <button id="anterior">
+    Anterior
+    </button>
+    <button id="siguiente">
+    Siguiente
+    </button>
+</div>
+<script>
+let numeroPokemon = 1;
+let URL =
+"https://pokeapi.co/api/v2/pokemon/";
+
+async function cargarPokemon(valor){
+    let respuesta =
+    await fetch(URL + valor);
+    let datos =
+    await respuesta.json();
+    document.getElementById("nombre")
+    .textContent =
+    datos.name;
+    document.getElementById("imagen")
+    .src =
+    datos.sprites.front_default;
+    document.getElementById("numero")
+    .textContent =
+    datos.id;
+    numeroPokemon =
+    datos.id;
+}
+cargarPokemon(1);
+document.getElementById("btnBuscar")
+.onclick = function(){
+    let valor =
+    document.getElementById("buscar")
+    .value.toLowerCase();
+    cargarPokemon(valor);
+};
+
+document.getElementById("siguiente")
+.onclick = function(){
+    numeroPokemon++;
+    cargarPokemon(numeroPokemon);
+};
+
+document.getElementById("anterior")
+.onclick = function(){
+    if(numeroPokemon > 1){
+        numeroPokemon--;
+        cargarPokemon(numeroPokemon);
+    }
+};
+</script>
+</body>
+
+</html>
