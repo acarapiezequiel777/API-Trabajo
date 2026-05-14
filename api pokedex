@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="estilopoke.css">
+
 <title>POKEDEX</title>
 
 </head>
@@ -12,11 +12,11 @@
 <p id="nombre">
 Cargando..</p>
 <img id="imagen">
+<button id="anterior">Anterior</button>
+<button id="siguiente">Siguiente </button>
 <p>Número : <span id="numero"></span></p>
 <input id="buscar" placeholder="numero o nombre">
 <button id="btnBuscar">Buscar</button>
-<button id="anterior">Anterior</button>
-<button id="siguiente">Siguiente </button>
 <script>
 
 let numeroPokemon = 1;
